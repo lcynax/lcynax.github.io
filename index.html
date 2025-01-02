@@ -1,9 +1,189 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editable Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
 
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .color-buttons {
+            margin: 10px;
+            text-align: center;
+        }
+
+        .color-buttons button, .clear-data {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .color-green {
+            background-color: green;
+            color: white;
+        }
+
+        .color-yellow {
+            background-color: yellow;
+            color: black;
+        }
+
+        .color-white {
+            background-color: white;
+            border: 1px solid #ddd;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+            background: white;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        td {
+            cursor: pointer;
+        }
+
+        td:focus {
+            outline: none;
+            background-color: #f0f8ff;
+        }
+    </style>
+</head>
 <body>
-  <h1>lcynax</h1>
-  <p>Welcome to my website!</p>
-  <img src="https://content.codecademy.com/articles/github-pages-via-web-app/happy-ice-cream.gif" />
-</body>
+    <div class="controls">
+        <div class="color-buttons">
+            <button class="color-green">Verde</button>
+            <button class="color-yellow">Amarelo</button>
+            <button class="color-white">Branco</button>
+        </div>
+        <button class="clear-data">Apagar Tudo - ainda nao funciona</button>
+    </div>
 
+    <table id="editableTable">
+        <thead>
+            <tr>
+                <th>Instalação</th>
+                <th>Computador + Display</th>
+                <th>Quadros + Módulos</th>
+                <th>Fonte + Bateria</th>
+                <th>Paineis + Peras</th>
+                <th>Botões Pres+Cancel</th>
+                <th>Botões Cancel</th>
+                <th>Botões de Chamada Wc</th>
+                <th>Sinalizadores Bicolores</th>
+                <th>Sinalizadores Vermelhos</th>
+                <th>Status Separado</th>
+                <th>Em Falta</th>
+                <th>Notas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows generated dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        const table = document.getElementById("editableTable").getElementsByTagName("tbody")[0];
+        let currentColor = "white";
+
+        // Change the current color
+        document.querySelector('.color-green').addEventListener('click', () => currentColor = "green");
+        document.querySelector('.color-yellow').addEventListener('click', () => currentColor = "yellow");
+        document.querySelector('.color-white').addEventListener('click', () => currentColor = "white");
+
+        // Clear table data
+        document.querySelector('.clear-data').addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear all data?')) {
+                fetch('/clear-data', { method: 'POST' })
+                    .then(response => {
+                        if (response.ok) {
+                            resetTable();
+                        } else {
+                            alert('Failed to clear data.');
+                        }
+                    });
+            }
+        });
+
+        // Reset the table on the frontend
+        function resetTable() {
+            for (let row of table.rows) {
+                for (let cell of row.cells) {
+                    cell.innerText = "";
+                    cell.style.backgroundColor = "white";
+                }
+            }
+        }
+
+        // Dynamically create table rows and cells
+        for (let i = 0; i < 15; i++) {
+            const row = table.insertRow();
+            for (let j = 0; j < 13; j++) {
+                const cell = row.insertCell();
+                cell.contentEditable = "true";
+                cell.addEventListener("input", saveTable);
+                cell.addEventListener("click", () => {
+                    cell.style.backgroundColor = currentColor;
+                    saveTable();
+                });
+            }
+        }
+
+        // Fetch saved data and populate the table
+        fetch('/table-data')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach((row, rowIndex) => {
+                    row.forEach((cell, colIndex) => {
+                        const tableCell = table.rows[rowIndex].cells[colIndex];
+                        tableCell.innerText = cell[0] || ""; // Text
+                        tableCell.style.backgroundColor = cell[1] || "white"; // Background color
+                    });
+                });
+            });
+
+        // Save the table data to the backend
+        function saveTable() {
+            const tableData = [];
+            for (let row of table.rows) {
+                const rowData = [];
+                for (let cell of row.cells) {
+                    rowData.push([cell.innerText, cell.style.backgroundColor || "white"]);
+                }
+                tableData.push(rowData);
+            }
+
+            fetch('/save-table', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(tableData),
+            }).then(response => {
+                if (!response.ok) {
+                    alert('Failed to save data.');
+                }
+            });
+        }
+    </script>
+</body>
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-Saving Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: auto;
+            background: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        td {
+            cursor: pointer;
+        }
+        td:focus {
+            outline: none;
+            background-color: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <table id="editableTable">
+        <thead>
+            <tr>
+                <th>Header 1</th>
+                <th>Header 2</th>
+                <th>Header 3</th>
+                <th>Header 4</th>
+                <th>Header 5</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows generated dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        // Generate the 15x5 table
+        const table = document.getElementById("editableTable").getElementsByTagName("tbody")[0];
+        for (let i = 0; i < 15; i++) {
+            const row = table.insertRow();
+            for (let j = 0; j < 5; j++) {
+                const cell = row.insertCell();
+                cell.contentEditable = "true";
+                cell.addEventListener("input", () => saveTable());
+            }
+        }
+
+        // Fetch initial data from the server
+        fetch('/table-data')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach((row, rowIndex) => {
+                    row.forEach((cell, colIndex) => {
+                        table.rows[rowIndex].cells[colIndex].innerText = cell;
+                    });
+    

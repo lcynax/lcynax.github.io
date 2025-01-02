@@ -1,0 +1,20 @@
+
+----- Copiar para table-data
+
+
+[
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"]],
+    [["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "white"], ["", "
